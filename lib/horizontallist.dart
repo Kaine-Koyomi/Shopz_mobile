@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:shopz_app/model/product.dart';
+import 'package:shopz_app/productDetails.dart';
 
 class Horizontallist extends StatelessWidget {
+  const Horizontallist({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20.0),
-      height: 200.0,
-      child: ListView(
+      height: 200,
+      child: ListView.builder(
         // This next line does the trick.
         scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          Container(
-            width: 160.0,
-            color: Colors.red,
-          ),
-          Container(
-            width: 160.0,
-            color: Colors.blue,
-          ),
-          Container(
-            width: 160.0,
-            color: Colors.green,
-          ),
-          Container(
-            width: 160.0,
-            color: Colors.yellow,
-          ),
-          Container(
-            width: 160.0,
-            color: Colors.orange,
-          ),
-        ],
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => Productdetails(product: products[index]),
+              ),
+            ),
+            child: Container(
+              height: 600,
+              width: 200.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(products[index].image),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

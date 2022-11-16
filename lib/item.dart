@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:shopz_app/model/product.dart';
 
 class Item extends StatelessWidget {
@@ -12,11 +12,13 @@ class Item extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Container(
+            width: 129,
             decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Image.asset("assets/images/hisui.jpg"),
+                borderRadius: BorderRadius.circular(16),
+                image: DecorationImage(
+                  image: AssetImage(product.image),
+                  fit: BoxFit.fill,
+                )),
           ),
         ),
         Padding(

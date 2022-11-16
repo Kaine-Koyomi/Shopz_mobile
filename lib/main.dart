@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './home.dart';
 
-void main() {
+void main() async {
   runApp(const Main());
 }
 
@@ -11,7 +11,7 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "shopz",
       home: Home(),
     );
