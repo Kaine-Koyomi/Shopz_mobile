@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopz_app/body.dart';
+import 'package:shopz_app/cart.dart';
+import 'package:shopz_app/mysearchdelegate.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,19 +19,25 @@ class Homestate extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('shopz'),
-            actions: [
-              IconButton(
-                color: Colors.white,
-                onPressed: null,
-                icon: Icon(Icons.shopping_cart),
+          title: Text('shopz'),
+          actions: [
+            IconButton(
+              color: Colors.white,
+              onPressed: () {
+                showSearch(context: context, delegate: MysearchDelegate());
+              },
+              icon: Icon(Icons.search),
+            ),
+            IconButton(
+              color: Colors.white,
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => Cart()),
               ),
-              IconButton(
-                onPressed: null,
-                icon: Icon(Icons.search),
-              ),
-            ],
-            backgroundColor: Colors.grey[850]),
+              icon: Icon(Icons.shopping_cart),
+            ),
+          ],
+          backgroundColor: Colors.grey[850],
+        ),
         body: Body());
   }
 }
