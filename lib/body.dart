@@ -9,47 +9,55 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Horizontallist(),
-        Text(
-          "New Products",
-          style: Theme.of(context)
-              .textTheme
-              .headline5
-              ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        Expanded(
-          child: Padding(
+    return SingleChildScrollView(
+      physics: const ScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Welcome to Shopz",
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          const Horizontallist(),
+          Text(
+            "New Products",
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          Padding(
             padding: const EdgeInsets.only(top: 35),
             child: SizedBox(
               height: 900,
-              child: GestureDetector(
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                ),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Productdetails(product: products[index]),
+                      ),
                     ),
-                    itemCount: products.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                Productdetails(product: products[index]),
-                          ),
-                        ),
-                        child: Item(
-                          product: products[index],
-                        ),
-                      );
-                    }),
+                    child: Item(
+                      product: products[index],
+                    ),
+                  );
+                },
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

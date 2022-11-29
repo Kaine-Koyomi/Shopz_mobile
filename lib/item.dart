@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shopz_app/model/product.dart';
+import 'package:shopz_app/productDetails.dart';
 
 class Item extends StatelessWidget {
   const Item({super.key, required this.product});
@@ -21,10 +22,11 @@ class Item extends StatelessWidget {
                 )),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(product.title),
-        )
+        Text(
+          product.title,
+          style: const TextStyle(fontSize: 17),
+        ),
+        Text("\$${Productdetails.oCcy.format(product.price)}")
       ],
     );
   }
