@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shopz_app/body.dart';
 import 'package:shopz_app/cart.dart';
+import 'package:shopz_app/favorite.dart';
+import 'package:shopz_app/home.dart';
 import 'package:shopz_app/item.dart';
 import 'package:shopz_app/model/product.dart';
 import 'package:intl/intl.dart';
+import 'package:shopz_app/profile.dart';
 
 class Productdetails extends StatefulWidget {
   Productdetails({super.key, required this.product});
@@ -16,19 +20,39 @@ class _ProductdetailsState extends State<Productdetails> {
   @override
   Widget build(BuildContext context) {
     final alreadySaved = Cart.cartproducts.contains(widget.product);
+    final alreadyfav = Favorite.productsfav.contains(widget.product);
+    Profile.lastseen.add(widget.product);
     void _showcart() {
+      Homestate.actualpage = Cart();
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Cart()),
+        MaterialPageRoute(builder: (context) => Home()),
       );
     }
 
-    int _selectedIndex = 0;
+    addfav() {
+      setState(() {
+        if (alreadyfav) {
+          Favorite.productsfav.remove(widget.product);
+        } else {
+          Favorite.productsfav.add(widget.product);
+        }
+      });
+    }
 
     void _onItemTapped(int index) {
       setState(() {
-        _selectedIndex = index;
-        if (index == 0 || index == 1) {
-          Navigator.pop(context);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Home(),
+          ),
+        );
+        Home.selectedIndex = index;
+        if (index == 0) {
+          Homestate.actualpage = Body();
+        } else if (index == 1) {
+          Homestate.actualpage = Profile();
+        } else if (index == 2) {
+          Homestate.actualpage = Cart();
         }
       });
     }
@@ -48,15 +72,6 @@ class _ProductdetailsState extends State<Productdetails> {
       appBar: AppBar(
         title: const Text("Product"),
         backgroundColor: Colors.grey[850],
-        actions: [
-          IconButton(
-            color: Colors.white,
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => Cart()),
-            ),
-            icon: Icon(Icons.shopping_cart),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
@@ -75,11 +90,29 @@ class _ProductdetailsState extends State<Productdetails> {
               ],
             ),
             Container(
-              color: Colors.white,
-              height: 200,
-              alignment: Alignment.topCenter,
-              child: Image.asset(widget.product.image),
-            ),
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  image: DecorationImage(
+                    image: AssetImage(widget.product.image),
+                  ),
+                ),
+                alignment: Alignment.bottomRight,
+                child: !alreadyfav
+                    ? GestureDetector(
+                        onTap: addfav,
+                        child: Icon(
+                          Icons.favorite_border,
+                          color: Colors.red,
+                        ),
+                      )
+                    : GestureDetector(
+                        onTap: addfav,
+                        child: Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
+                      )),
             Row(
               children: [
                 Text(
@@ -184,11 +217,11 @@ class _ProductdetailsState extends State<Productdetails> {
                   label: 'Profile',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.menu),
-                  label: 'Menu',
+                  icon: Icon(Icons.shopping_cart),
+                  label: 'Cart',
                 ),
               ],
-              currentIndex: _selectedIndex,
+              currentIndex: Home.selectedIndex,
               selectedItemColor: Colors.blue[800],
               onTap: _onItemTapped,
             ),

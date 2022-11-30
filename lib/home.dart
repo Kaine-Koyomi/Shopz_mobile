@@ -5,10 +5,12 @@ import 'package:shopz_app/body.dart';
 import 'package:shopz_app/cart.dart';
 import 'package:shopz_app/mysearchdelegate.dart';
 import 'package:shopz_app/profile.dart';
+import 'package:shopz_app/sidebar.dart';
+import 'package:shopz_app/favorite.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
-
+  static var selectedIndex = 0;
   @override
   State<StatefulWidget> createState() {
     return Homestate();
@@ -16,17 +18,17 @@ class Home extends StatefulWidget {
 }
 
 class Homestate extends State {
-  static int _selectedIndex = 0;
-
-  Widget actualpage = Body();
+  static Widget actualpage = Body();
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      Home.selectedIndex = index;
       if (index == 0) {
         actualpage = Body();
       } else if (index == 1) {
         actualpage = Profile();
+      } else if (index == 2) {
+        actualpage = Cart();
       }
     });
   }
@@ -34,6 +36,7 @@ class Homestate extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Sidebar(),
       appBar: AppBar(
         title: Text('shopz'),
         actions: [
@@ -43,13 +46,6 @@ class Homestate extends State {
               showSearch(context: context, delegate: MysearchDelegate());
             },
             icon: Icon(Icons.search),
-          ),
-          IconButton(
-            color: Colors.white,
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => Cart()),
-            ),
-            icon: Icon(Icons.shopping_cart),
           ),
         ],
         backgroundColor: Colors.grey[850],
@@ -69,11 +65,11 @@ class Homestate extends State {
                   label: 'Profile',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.menu),
-                  label: 'Menu',
+                  icon: Icon(Icons.shopping_cart),
+                  label: 'Cart',
                 ),
               ],
-              currentIndex: _selectedIndex,
+              currentIndex: Home.selectedIndex,
               selectedItemColor: Colors.blue[800],
               onTap: _onItemTapped,
             ),

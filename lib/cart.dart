@@ -53,10 +53,6 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Cart(${Cart.cartproducts.length})"),
-        backgroundColor: Colors.grey[850],
-      ),
       body: Cart.cartproducts.isEmpty
           ? const Center(
               child: Text(
@@ -67,6 +63,19 @@ class _CartState extends State<Cart> {
             )
           : Column(
               children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "you have ${Cart.cartproducts.length} item in your Cart",
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: Cart.cartproducts.length,
@@ -110,12 +119,9 @@ class _CartState extends State<Cart> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
-                                  Productdetails.oCcy
-                                      .format(Cart.cartproducts[index].price)
-                                      .toString(),
-                                ),
+                                    "\$${Productdetails.oCcy.format(Cart.cartproducts[index].price).toString()}"),
                               ),
                               IconButton(
                                   color: Colors.red,
@@ -143,31 +149,6 @@ class _CartState extends State<Cart> {
                 ),
               ],
             ),
-      bottomNavigationBar: Row(
-        children: [
-          Expanded(
-            child: BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.menu),
-                  label: 'Menu',
-                ),
-              ],
-              currentIndex: _selectedIndex,
-              selectedItemColor: Colors.blue[800],
-              onTap: _onItemTapped,
-            ),
-          )
-        ],
-      ),
     );
   }
 }
