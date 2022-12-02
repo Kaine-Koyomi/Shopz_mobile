@@ -136,7 +136,7 @@ class _ProductdetailsState extends State<Productdetails> {
                     width: 250,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Colors.green,
+                      color: Colors.blue[800],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
