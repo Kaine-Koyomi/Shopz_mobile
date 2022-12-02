@@ -71,136 +71,174 @@ class _ProductdetailsState extends State<Productdetails> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Product"),
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.blue[800],
       ),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: [
-                Text(
-                  textAlign: TextAlign.start,
-                  widget.product.title,
-                  style: const TextStyle(
-                    fontSize: 35,
-                  ),
-                ),
-              ],
-            ),
-            Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  image: DecorationImage(
-                    image: AssetImage(widget.product.image),
-                  ),
-                ),
-                alignment: Alignment.bottomRight,
-                child: !alreadyfav
-                    ? GestureDetector(
-                        onTap: addfav,
-                        child: Icon(
-                          Icons.favorite_border,
-                          color: Colors.red,
-                        ),
-                      )
-                    : GestureDetector(
-                        onTap: addfav,
-                        child: Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        ),
-                      )),
-            Row(
-              children: [
-                Text(
-                  "\$${Productdetails.oCcy.format(widget.product.price)}",
-                  style: const TextStyle(fontSize: 50),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: addtocart,
-                child: Container(
-                  height: 50,
-                  width: 250,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.green,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(Icons.shopping_cart),
-                      alreadySaved
-                          ? Text("see in the cart")
-                          : Text("add to cart")
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: SizedBox(
-                      height: 150,
-                      child: ListView(
-                        children: [
-                          Text(
-                            widget.product.description,
-                          ),
-                        ],
-                      ),
+        child: Container(
+          color: Colors.grey[850],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Column(
+                children: [
+                  Text(
+                    textAlign: TextAlign.start,
+                    widget.product.title,
+                    style: const TextStyle(
+                      fontSize: 35,
+                      color: Colors.white,
                     ),
                   ),
-                )
-              ],
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 35),
-              child: Text(
-                "Suggestions",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: 35,
+                ],
+              ),
+              Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    image: DecorationImage(
+                      image: AssetImage(widget.product.image),
+                    ),
+                  ),
+                  alignment: Alignment.bottomRight,
+                  child: !alreadyfav
+                      ? GestureDetector(
+                          onTap: addfav,
+                          child: Icon(
+                            Icons.favorite_border,
+                            color: Colors.red,
+                          ),
+                        )
+                      : GestureDetector(
+                          onTap: addfav,
+                          child: Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          ),
+                        )),
+              Column(
+                children: [
+                  Text(
+                    "\$${Productdetails.oCcy.format(widget.product.price)}",
+                    style: const TextStyle(
+                      fontSize: 50,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: addtocart,
+                  child: Container(
+                    height: 50,
+                    width: 250,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.green,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Icon(
+                          Icons.shopping_cart,
+                          color: Colors.white,
+                        ),
+                        alreadySaved
+                            ? const Text(
+                                "see in the cart",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : const Text(
+                                "add to cart",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 35),
-              child: SizedBox(
-                height: 800,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              Productdetails(product: products[index]),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SizedBox(
+                        height: 150,
+                        child: ListView(
+                          children: [
+                            Text(
+                              widget.product.description,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Item(
-                        product: products[index],
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                margin: EdgeInsetsDirectional.only(top: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadiusDirectional.only(
+                    topEnd: Radius.circular(20),
+                    topStart: Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 35),
+                      child: Text(
+                        "Suggestions",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 35,
+                        ),
                       ),
-                    );
-                  },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: SizedBox(
+                        height: 800,
+                        child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                          ),
+                          itemCount: products.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      Productdetails(product: products[index]),
+                                ),
+                              ),
+                              child: Item(
+                                product: products[index],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Row(

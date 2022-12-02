@@ -38,17 +38,48 @@ class Homestate extends State {
     return Scaffold(
       drawer: Sidebar(),
       appBar: AppBar(
-        title: Text('shopz'),
         actions: [
-          IconButton(
-            color: Colors.white,
-            onPressed: () {
+          GestureDetector(
+            onTap: () {
               showSearch(context: context, delegate: MysearchDelegate());
             },
-            icon: Icon(Icons.search),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 250,
+                margin: EdgeInsetsDirectional.only(end: 30),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 30),
+                      child: Text(
+                        "search for products",
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey[500]),
+                      ),
+                    ),
+                    Expanded(
+                      child: IconButton(
+                        color: Colors.black,
+                        onPressed: () {
+                          showSearch(
+                              context: context, delegate: MysearchDelegate());
+                        },
+                        icon: Icon(Icons.search),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.blue[800],
       ),
       body: actualpage,
       bottomNavigationBar: Row(
