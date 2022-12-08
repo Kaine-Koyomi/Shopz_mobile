@@ -5,7 +5,6 @@ import 'package:shopz_app/body.dart';
 import 'package:shopz_app/cart.dart';
 import 'package:shopz_app/mysearchdelegate.dart';
 import 'package:shopz_app/profile.dart';
-import 'package:shopz_app/sidebar.dart';
 import 'package:shopz_app/favorite.dart';
 
 class Home extends StatefulWidget {
@@ -36,7 +35,6 @@ class Homestate extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Sidebar(),
       appBar: AppBar(
         actions: [
           GestureDetector(

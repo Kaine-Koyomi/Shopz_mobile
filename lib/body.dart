@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mongo_dart/mongo_dart.dart';
 import 'package:shopz_app/horizontallist.dart';
 import 'package:shopz_app/item.dart';
 import 'package:shopz_app/model/product.dart';
@@ -48,7 +47,6 @@ class Body extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsetsDirectional.only(top: 10),
-              height: 900,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadiusDirectional.only(
