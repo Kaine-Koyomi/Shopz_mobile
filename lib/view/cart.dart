@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
 import 'package:shopz_app/controller/cart_controller.dart';
-import 'package:shopz_app/view/productDetails.dart';
 
 class Cart extends StatefulWidget {
   const Cart({

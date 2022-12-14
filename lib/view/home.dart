@@ -2,10 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
-import 'package:shopz_app/view/body.dart';
-import 'package:shopz_app/view/cart.dart';
 import 'package:shopz_app/controller/mysearchdelegate.dart';
-import 'package:shopz_app/view/profile.dart';
 import 'package:shopz_app/controller/navigation_controller.dart';
 
 class Home extends StatefulWidget {
