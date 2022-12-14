@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/productDetails.dart';
+import 'package:shopz_app/view/productDetails.dart';
 
 class Horizontallist extends StatelessWidget {
   const Horizontallist({super.key});

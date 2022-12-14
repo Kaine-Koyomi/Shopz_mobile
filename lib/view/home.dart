@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:shopz_app/body.dart';
-import 'package:shopz_app/cart.dart';
-import 'package:shopz_app/mysearchdelegate.dart';
-import 'package:shopz_app/profile.dart';
-import 'package:shopz_app/favorite.dart';
+import 'package:shopz_app/commons/styles.dart';
+import 'package:shopz_app/view/body.dart';
+import 'package:shopz_app/view/cart.dart';
+import 'package:shopz_app/controller/mysearchdelegate.dart';
+import 'package:shopz_app/view/profile.dart';
+import 'package:shopz_app/controller/navigation_controller.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,21 +18,6 @@ class Home extends StatefulWidget {
 }
 
 class Homestate extends State {
-  static Widget actualpage = Body();
-
-  void _onItemTapped(int index) {
-    setState(() {
-      Home.selectedIndex = index;
-      if (index == 0) {
-        actualpage = Body();
-      } else if (index == 1) {
-        actualpage = Profile();
-      } else if (index == 2) {
-        actualpage = Cart();
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,9 +63,9 @@ class Homestate extends State {
             ),
           ),
         ],
-        backgroundColor: Colors.blue[800],
+        backgroundColor: Stylization.appMainColor,
       ),
-      body: actualpage,
+      body: NavigatorController.actualPage,
       bottomNavigationBar: Row(
         children: [
           Expanded(
@@ -98,9 +84,13 @@ class Homestate extends State {
                   label: 'Cart',
                 ),
               ],
-              currentIndex: Home.selectedIndex,
-              selectedItemColor: Colors.blue[800],
-              onTap: _onItemTapped,
+              currentIndex: NavigatorController.selectedIndex,
+              selectedItemColor: Stylization.appMainColor,
+              onTap: ((value) {
+                setState(() {
+                  NavigatorController.onItemTapped(value);
+                });
+              }),
             ),
           )
         ],

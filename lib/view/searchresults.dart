@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/item.dart';
+import 'package:shopz_app/view/item.dart';
 import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/productDetails.dart';
+import 'package:shopz_app/view/productDetails.dart';
 
+// ignore: must_be_immutable
 class MyshowResults extends StatelessWidget {
   MyshowResults({super.key, required this.results, required this.term});
   var results = <Product>[];
@@ -13,8 +14,8 @@ class MyshowResults extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "showing results for \"${term}\"... ",
-          style: TextStyle(fontSize: 20),
+          "showing results for \"$term\"... ",
+          style: const TextStyle(fontSize: 20),
         ),
         Expanded(
           child: GridView.builder(

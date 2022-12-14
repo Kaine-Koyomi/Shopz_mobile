@@ -7,8 +7,6 @@ class Product {
   Product(this.title, this.description, this.price, this.image, this.quantity);
 }
 
-var productsmongo;
-
 List<Product> products = [
   Product(
       "teste",

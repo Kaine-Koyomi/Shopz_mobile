@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:shopz_app/favorite.dart';
-import 'package:shopz_app/home.dart';
-import 'package:shopz_app/item.dart';
+import 'package:shopz_app/commons/styles.dart';
+import 'package:shopz_app/controller/navigation_controller.dart';
+import 'package:shopz_app/view/item.dart';
 import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/productDetails.dart';
+import 'package:shopz_app/view/productDetails.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -17,17 +17,8 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    void showfavorites() {
-      Homestate.actualpage = Favorite();
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => Home(),
-        ),
-      );
-    }
-
     return Container(
-      color: Colors.grey[850],
+      color: Stylization.bodyColor,
       child: Column(
         children: <Widget>[
           Container(
@@ -46,7 +37,6 @@ class _ProfileState extends State<Profile> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Colors.amber[900],
                       image: const DecorationImage(
                         image: AssetImage(
                             "assets/images/default-profile-photo.jpg"),
@@ -74,7 +64,9 @@ class _ProfileState extends State<Profile> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
-                  onTap: showfavorites,
+                  onTap: () {
+                    NavigatorController.showfavorites(context);
+                  },
                   child: Container(
                     height: 50,
                     width: 170,
@@ -138,10 +130,8 @@ class _ProfileState extends State<Profile> {
                             ? Container(
                                 color: Colors.white,
                               )
-                            : Container(
-                                child: Item(
-                                  product: Profile.lastseen.last,
-                                ),
+                            : Item(
+                                product: Profile.lastseen.last,
                               ),
                       );
                     },

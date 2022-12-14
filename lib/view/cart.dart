@@ -1,61 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/home.dart';
-import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/productDetails.dart';
+import 'package:shopz_app/commons/styles.dart';
+import 'package:shopz_app/controller/cart_controller.dart';
+import 'package:shopz_app/view/productDetails.dart';
 
 class Cart extends StatefulWidget {
-  Cart({
+  const Cart({
     super.key,
   });
-  static final cartproducts = <Product>[];
-  static decquan(a) {
-    if (a.quantity <= 1) {
-      a.quantity = 0;
-      Cart.cartproducts.remove(a);
-    } else {
-      a.quantity--;
-    }
-  }
-
-  static acrquan(a) {
-    int storage = 10;
-    if (a.quantity == storage) {
-      const Text("esse produto já tem todo o estoque");
-    } else {
-      a.quantity++;
-    }
-  }
 
   @override
   State<Cart> createState() => _CartState();
 }
 
 class _CartState extends State<Cart> {
-  totalcart(a) {
-    double sum = 0;
-    for (var i = 0; i < a.length; i++) {
-      sum += a[i].price * a[i].quantity;
-    }
-    return sum;
-  }
-
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (index == 0 || index == 1) {
-        Navigator.pop(context);
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Cart.cartproducts.isEmpty
+      body: CartController.cartConsult(0, "empty")
           ? Container(
-              color: Colors.grey[850],
+              color: Stylization.bodyColor,
               child: const Center(
                 child: Text(
                   "your shopping cart is empty",
@@ -73,15 +36,16 @@ class _CartState extends State<Cart> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "you have ${Cart.cartproducts.length} item in your Cart",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          "you have ${CartController.cartConsult(0, "count")} item in your Cart",
+                          style: const TextStyle(
+                              fontSize: 18, color: Colors.white),
                         ),
                       ),
                     ],
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: Cart.cartproducts.length,
+                      itemCount: CartController.cartConsult(0, "count"),
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 9),
@@ -96,44 +60,47 @@ class _CartState extends State<Cart> {
                                     height: 100,
                                     width: 93,
                                     child: Image.asset(
-                                        Cart.cartproducts[index].image),
+                                      CartController.cartConsult(
+                                          index, "image"),
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(Cart.cartproducts[index].title),
+                                  child: Text(
+                                    CartController.cartConsult(index, "title"),
+                                  ),
                                 ),
                                 Row(
                                   children: [
                                     IconButton(
                                       onPressed: () => setState(() {
-                                        Cart.decquan(Cart.cartproducts[index]);
+                                        CartController.decquan(index);
                                       }),
-                                      icon: Icon(Icons.remove),
+                                      icon: const Icon(Icons.remove),
                                     ),
-                                    Text(Cart.cartproducts[index].quantity
+                                    Text(CartController.cartConsult(
+                                            index, "quantity")
                                         .toString()),
                                     IconButton(
                                       onPressed: () => setState(() {
-                                        Cart.acrquan(Cart.cartproducts[index]);
+                                        CartController.acrquan(index);
                                       }),
-                                      icon: Icon(Icons.add),
+                                      icon: const Icon(Icons.add),
                                     )
                                   ],
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Text(
-                                      "\$${Productdetails.oCcy.format(Cart.cartproducts[index].price).toString()}"),
+                                      "\$${Stylization.oCcy.format(CartController.cartConsult(index, "price")).toString()}"),
                                 ),
                                 IconButton(
                                     color: Colors.red,
                                     onPressed: () => setState(() {
-                                          Cart.cartproducts[index].quantity = 0;
-                                          Cart.cartproducts
-                                              .remove(Cart.cartproducts[index]);
+                                          CartController.removeFromCart(index);
                                         }),
-                                    icon: Icon(Icons.delete)),
+                                    icon: const Icon(Icons.delete)),
                               ],
                             ),
                           ),
@@ -143,7 +110,7 @@ class _CartState extends State<Cart> {
                   ),
                   Container(
                     height: 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadiusDirectional.only(
                           topStart: Radius.circular(20),
@@ -151,7 +118,7 @@ class _CartState extends State<Cart> {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      "TOTAL \$ ${Productdetails.oCcy.format(totalcart(Cart.cartproducts))}",
+                      "TOTAL \$ ${Stylization.oCcy.format(CartController.totalCart())}",
                     ),
                   ),
                 ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/searchresults.dart';
+import 'package:shopz_app/view/searchresults.dart';
 
 class MysearchDelegate extends SearchDelegate {
   resul() {
@@ -18,32 +18,28 @@ class MysearchDelegate extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
     return [
       IconButton(
         onPressed: () {
           query = '';
         },
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
       )
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
     return IconButton(
       onPressed: () {
         close(context, null);
       },
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-
     return MyshowResults(
       results: resul(),
       term: query,
@@ -52,7 +48,6 @@ class MysearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
     List<Product> suggestions = products.where(
       (element) {
         final result = element.title.toLowerCase();
