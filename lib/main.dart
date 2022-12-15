@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopz_app/view/adressinfo.dart';
+import 'package:shopz_app/view/login.dart';
 import 'view/home.dart';
 
 void main() async {
@@ -10,9 +12,9 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "shopz",
-      home: Home(),
+      home: Login(),
     );
   }
 }

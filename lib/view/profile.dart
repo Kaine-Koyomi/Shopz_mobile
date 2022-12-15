@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
 import 'package:shopz_app/controller/navigation_controller.dart';
+import 'package:shopz_app/controller/user_controller.dart';
 import 'package:shopz_app/view/item.dart';
 import 'package:shopz_app/model/product.dart';
 import 'package:shopz_app/view/productDetails.dart';
@@ -15,6 +16,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  UserController _controller = UserController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,10 +48,10 @@ class _ProfileState extends State<Profile> {
                     height: 100,
                     width: 100,
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      "username",
+                      _controller.getUserData("name"),
                       style: TextStyle(
                         fontSize: 29,
                       ),
