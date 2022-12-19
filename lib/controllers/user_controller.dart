@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/model/user_model.dart';
-import 'package:shopz_app/view/home.dart';
+import 'package:shopz_app/models/user_model.dart';
+import 'package:shopz_app/views/home.dart';
 
 class UserController {
   String? _login;

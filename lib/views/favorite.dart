@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
-import 'package:shopz_app/controller/favorite_controller.dart';
+import 'package:shopz_app/controllers/favorite_controller.dart';
 
 class Favorite extends StatefulWidget {
   const Favorite({super.key});

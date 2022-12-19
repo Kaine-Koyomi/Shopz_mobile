@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
 
-import 'package:shopz_app/model/product.dart';
+import 'package:shopz_app/models/product.dart';
 
 class Item extends StatelessWidget {
   const Item({super.key, required this.product});

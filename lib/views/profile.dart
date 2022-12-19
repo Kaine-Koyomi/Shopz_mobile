@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
-import 'package:shopz_app/controller/navigation_controller.dart';
-import 'package:shopz_app/controller/user_controller.dart';
-import 'package:shopz_app/view/item.dart';
-import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/view/productDetails.dart';
+import 'package:shopz_app/controllers/navigation_controller.dart';
+import 'package:shopz_app/controllers/user_controller.dart';
+import 'package:shopz_app/views/item.dart';
+import 'package:shopz_app/models/product.dart';
+import 'package:shopz_app/views/productDetails.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -16,7 +16,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  UserController _controller = UserController();
+  final UserController _controller = UserController();
   @override
   Widget build(BuildContext context) {
     return Container(

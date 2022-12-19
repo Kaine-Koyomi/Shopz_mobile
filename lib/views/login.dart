@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/controller/user_controller.dart';
-import 'package:shopz_app/view/register.dart';
+import 'package:shopz_app/controllers/user_controller.dart';
+import 'package:shopz_app/views/register.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});

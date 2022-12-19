@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/view/body.dart';
-import 'package:shopz_app/view/cart.dart';
-import 'package:shopz_app/view/favorite.dart';
-import 'package:shopz_app/view/home.dart';
-import 'package:shopz_app/view/profile.dart';
+import 'package:shopz_app/views/body.dart';
+import 'package:shopz_app/views/cart.dart';
+import 'package:shopz_app/views/favorite.dart';
+import 'package:shopz_app/views/home.dart';
+import 'package:shopz_app/views/profile.dart';
 
 class NavigatorController {
   static var selectedIndex = 0;
@@ -42,6 +42,14 @@ class NavigatorController {
     Navigator.of(a).push(
       MaterialPageRoute(
         builder: (context) => const Home(),
+      ),
+    );
+  }
+
+  static goToPage(page, a) {
+    Navigator.of(a).push(
+      MaterialPageRoute(
+        builder: (context) => page,
       ),
     );
   }

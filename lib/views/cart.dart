@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
-import 'package:shopz_app/controller/cart_controller.dart';
+import 'package:shopz_app/controllers/cart_controller.dart';
+import 'package:shopz_app/controllers/navigation_controller.dart';
+import 'package:shopz_app/views/adressinfo.dart';
 
 class Cart extends StatefulWidget {
   const Cart({
@@ -53,7 +55,8 @@ class _CartState extends State<Cart> {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.only(
+                                      top: 8, left: 8, bottom: 8),
                                   child: Container(
                                     color: Colors.white,
                                     height: 100,
@@ -115,9 +118,35 @@ class _CartState extends State<Cart> {
                           topStart: Radius.circular(20),
                           topEnd: Radius.circular(20)),
                     ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "TOTAL \$ ${Stylization.oCcy.format(CartController.totalCart())}",
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "TOTAL \$ ${Stylization.oCcy.format(CartController.totalCart())}",
+                        ),
+                        SizedBox(
+                          width: 150,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            NavigatorController.goToPage(Adressinfo(), context);
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Stylization.appMainColor,
+                            ),
+                            child: Center(
+                                child: Text(
+                              "finish order",
+                              style:
+                                  TextStyle(color: Stylization.fontColorWhite),
+                            )),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ],

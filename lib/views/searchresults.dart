@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/view/item.dart';
-import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/view/productDetails.dart';
+import 'package:shopz_app/views/item.dart';
+import 'package:shopz_app/models/product.dart';
+import 'package:shopz_app/views/productDetails.dart';
 
 // ignore: must_be_immutable
 class MyshowResults extends StatelessWidget {

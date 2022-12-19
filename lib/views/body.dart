@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/view/horizontallist.dart';
-import 'package:shopz_app/view/item.dart';
-import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/view/productDetails.dart';
+import 'package:shopz_app/views/horizontallist.dart';
+import 'package:shopz_app/views/item.dart';
+import 'package:shopz_app/models/product.dart';
+import 'package:shopz_app/views/productDetails.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/view/adressinfo.dart';
-import 'package:shopz_app/view/login.dart';
-import 'view/home.dart';
+import 'package:shopz_app/views/login.dart';
 
 void main() async {
   runApp(const Main());

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/view/searchresults.dart';
+import 'package:shopz_app/models/product.dart';
+import 'package:shopz_app/views/searchresults.dart';
 
 class MysearchDelegate extends SearchDelegate {
   resul() {

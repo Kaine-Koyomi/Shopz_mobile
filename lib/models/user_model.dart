@@ -1,12 +1,10 @@
-import 'dart:ffi';
-
-import 'package:shopz_app/model/adress_model.dart';
+import 'package:shopz_app/models/adress_model.dart';
 
 class UserModel {
-  final String? name;
-  final String? login;
-  final String? pass;
-  final Adress? adress;
+  String? name;
+  String? login;
+  String? pass;
+  Adress? adress;
   bool logedin;
 
   UserModel(this.login, this.pass, this.adress, this.name, this.logedin);

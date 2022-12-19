@@ -1,4 +1,4 @@
-import 'package:shopz_app/model/favorite_model.dart';
+import 'package:shopz_app/models/favorite_model.dart';
 
 class FavoriteController {
   static addFav(a) {

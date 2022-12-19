@@ -1,4 +1,4 @@
-import 'package:shopz_app/model/product.dart';
+import 'package:shopz_app/models/product.dart';
 
 class FavoriteModel {
   static final productsfav = <Product>[];

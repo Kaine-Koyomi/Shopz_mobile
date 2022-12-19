@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/controller/user_controller.dart';
+import 'package:shopz_app/controllers/user_controller.dart';
 
 class Register extends StatelessWidget {
   UserController _controller = UserController();

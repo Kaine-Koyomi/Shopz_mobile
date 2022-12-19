@@ -1,14 +1,14 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
-import 'package:shopz_app/controller/cart_controller.dart';
-import 'package:shopz_app/controller/favorite_controller.dart';
-import 'package:shopz_app/controller/navigation_controller.dart';
-import 'package:shopz_app/model/favorite_model.dart';
-import 'package:shopz_app/view/home.dart';
-import 'package:shopz_app/view/item.dart';
-import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/view/profile.dart';
+import 'package:shopz_app/controllers/cart_controller.dart';
+import 'package:shopz_app/controllers/favorite_controller.dart';
+import 'package:shopz_app/controllers/navigation_controller.dart';
+import 'package:shopz_app/models/favorite_model.dart';
+import 'package:shopz_app/views/home.dart';
+import 'package:shopz_app/views/item.dart';
+import 'package:shopz_app/models/product.dart';
+import 'package:shopz_app/views/profile.dart';
 
 class Productdetails extends StatefulWidget {
   const Productdetails({super.key, required this.product});

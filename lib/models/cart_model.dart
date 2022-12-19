@@ -1,4 +1,4 @@
-import 'package:shopz_app/model/product.dart';
+import 'package:shopz_app/models/product.dart';
 
 class CartModel {
   static final cartproducts = <Product>[];

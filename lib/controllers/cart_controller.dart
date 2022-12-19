@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shopz_app/controller/navigation_controller.dart';
-import 'package:shopz_app/view/cart.dart';
-import 'package:shopz_app/model/cart_model.dart';
-import 'package:shopz_app/model/product.dart';
-import 'package:shopz_app/view/home.dart';
+import 'package:shopz_app/controllers/navigation_controller.dart';
+import 'package:shopz_app/views/cart.dart';
+import 'package:shopz_app/models/cart_model.dart';
+import 'package:shopz_app/models/product.dart';
+import 'package:shopz_app/views/home.dart';
 
 class CartController {
   static decquan(index) {
