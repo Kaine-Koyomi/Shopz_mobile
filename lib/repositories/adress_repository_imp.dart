@@ -13,7 +13,6 @@ class AdressRepositoryImp extends AdressRepository {
       var decodedResponse = jsonDecode(response.body) as Map;
       return await Adress.fromJson(decodedResponse);
     } catch (e) {
-      print(e);
       return Adress(null, null, null, null, null, null, null);
     } finally {
       client.close();

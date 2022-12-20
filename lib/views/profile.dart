@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
 import 'package:shopz_app/controllers/navigation_controller.dart';
 import 'package:shopz_app/controllers/user_controller.dart';
+import 'package:shopz_app/views/editprofile.dart';
 import 'package:shopz_app/views/item.dart';
 import 'package:shopz_app/models/product.dart';
 import 'package:shopz_app/views/productDetails.dart';
@@ -51,7 +52,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      _controller.getUserData("name"),
+                      _controller.getUserData()!,
                       style: TextStyle(
                         fontSize: 29,
                       ),
@@ -90,6 +91,32 @@ class _ProfileState extends State<Profile> {
                         ),
                       ],
                     ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  NavigatorController.goToPage(EditProfile(), context);
+                },
+                child: Container(
+                  height: 50,
+                  width: 170,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Icon(
+                        Icons.edit,
+                      ),
+                      Text(
+                        "Edit Profile",
+                        style: TextStyle(fontFamily: "anton", fontSize: 29),
+                      ),
+                    ],
                   ),
                 ),
               ),

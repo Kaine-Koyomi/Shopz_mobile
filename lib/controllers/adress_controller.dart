@@ -37,15 +37,17 @@ class AdressController {
   getUserAdress(value) {
     for (var i = 0; i < users.length; i++) {
       if (users[i].logedin) {
-        switch (value) {
-          case "street":
-            return users[i].adress!.rua;
-          case "bairro":
-            return users[i].adress!.bairro;
-          case "city":
-            return users[i].adress!.city;
-          case "uf":
-            return users[i].adress!.uf;
+        for (var j = 0; j < users[i].adress.length; j++) {
+          switch (value) {
+            case "street":
+              return users[i].adress[j]!.rua;
+            case "bairro":
+              return users[i].adress[j]!.bairro;
+            case "city":
+              return users[i].adress[j]!.city;
+            case "uf":
+              return users[i].adress[j]!.uf;
+          }
         }
       }
     }
@@ -77,8 +79,7 @@ class AdressController {
   Future<bool> confirmAdress() async {
     for (var i = 0; i < users.length; i++) {
       if (users[i].logedin) {
-        print(users[i].adress!.number);
-        users[i].adress = adress;
+        users[i].adress.add(adress);
         return true;
       }
     }

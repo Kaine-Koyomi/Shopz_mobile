@@ -39,11 +39,9 @@ class Login extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    if (!_controller.auth(context)) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          _controller.snackBar("login or password is wrong"));
-                    }
+                  onPressed: () async {
+                    ScaffoldMessenger.of(context).showSnackBar(await _controller
+                        .snackBar(await _controller.signIn(context)));
                   },
                   child: Text("Login"),
                 ),

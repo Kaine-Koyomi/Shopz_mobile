@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopz_app/controllers/user_controller.dart';
 
@@ -66,14 +67,10 @@ class Register extends StatelessWidget {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      if (!_controller.register()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          _controller.snackBar("the passwords don't match"),
-                        );
-                      } else {
-                        Navigator.pop(context);
-                      }
+                    onPressed: () async {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          await _controller
+                              .snackBar(await _controller.register(context)));
                     },
                     child: Text("Register"),
                   ),
