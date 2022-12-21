@@ -20,6 +20,10 @@ class EditProfile extends StatelessWidget {
           decoration: InputDecoration(
             label: Text("Name"),
           ),
+          onSubmitted: (value) {
+            _userController.setName(value);
+            _userController.updatename();
+          },
           controller: _userController.getcontroller("name"),
         ),
         TextField(

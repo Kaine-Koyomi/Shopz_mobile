@@ -11,7 +11,4 @@ class UserModel {
   UserModel(this.login, this.pass, this.adress, this.name, this.logedin);
 }
 
-List<UserModel> users = [
-  UserModel("login", "pass", [], "Mauricio", false),
-  UserModel("mau", "1234", [], "Angelica", false),
-];
+List<UserModel> users = [];
