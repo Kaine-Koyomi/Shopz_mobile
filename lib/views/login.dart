@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopz_app/controllers/user_controller.dart';
+import 'package:shopz_app/models/product.dart';
 import 'package:shopz_app/views/register.dart';
 
 class Login extends StatelessWidget {

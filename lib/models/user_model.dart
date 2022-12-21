@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:shopz_app/models/adress_model.dart';
 
 class UserModel {

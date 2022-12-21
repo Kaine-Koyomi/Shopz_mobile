@@ -8,12 +8,12 @@ import 'package:shopz_app/views/profile.dart';
 class NavigatorController {
   static var selectedIndex = 0;
 
-  static Widget actualPage = const Body();
+  static Widget actualPage = Body();
 
   static void onItemTapped(int index) {
     selectedIndex = index;
     if (index == 0) {
-      actualPage = const Body();
+      actualPage = Body();
     } else if (index == 1) {
       actualPage = const Profile();
     } else if (index == 2) {
@@ -29,7 +29,7 @@ class NavigatorController {
     );
     selectedIndex = index;
     if (index == 0) {
-      actualPage = const Body();
+      actualPage = Body();
     } else if (index == 1) {
       actualPage = const Profile();
     } else if (index == 2) {

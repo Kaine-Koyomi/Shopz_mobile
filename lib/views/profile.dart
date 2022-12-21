@@ -72,7 +72,7 @@ class _ProfileState extends State<Profile> {
                   },
                   child: Container(
                     height: 50,
-                    width: 170,
+                    padding: EdgeInsets.all(7),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(40),
@@ -100,7 +100,7 @@ class _ProfileState extends State<Profile> {
                 },
                 child: Container(
                   height: 50,
-                  width: 170,
+                  padding: EdgeInsets.all(7),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(40),

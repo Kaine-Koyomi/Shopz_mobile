@@ -1,32 +1,39 @@
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:shopz_app/controllers/products_controller.dart';
 import 'package:shopz_app/models/product.dart';
 import 'package:shopz_app/views/productDetails.dart';
 
 class Horizontallist extends StatelessWidget {
-  const Horizontallist({super.key});
+  Horizontallist({super.key});
+  ProductController _controller = ProductController();
 
   @override
   Widget build(BuildContext context) {
+    final ref = _controller.fb.ref().child("products");
     return Container(
       margin: const EdgeInsets.only(top: 20, bottom: 50),
       height: 200,
-      child: ListView.builder(
-        // This next line does the trick.
+      child: FirebaseAnimatedList(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
-        itemBuilder: (context, index) {
+        query: ref,
+        itemBuilder: (context, snapshot, animation, index) {
+          var a = snapshot.value as Map;
           return GestureDetector(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => Productdetails(product: products[index]),
-              ),
-            ),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      Productdetails(product: products[index]),
+                ),
+              );
+            },
             child: Container(
               height: 600,
               width: 200.0,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(products[index].image),
+                  image: NetworkImage(a["image"]),
                   fit: BoxFit.fill,
                 ),
               ),

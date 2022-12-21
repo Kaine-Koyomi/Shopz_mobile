@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:shopz_app/models/product.dart';
 import 'package:shopz_app/views/home.dart';
 
 class UserController {
@@ -42,6 +44,19 @@ class UserController {
     return "values are not valid";
   }
 
+  setInDb() async {
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DatabaseReference ref =
+          FirebaseDatabase.instance.ref("users/${user.uid}");
+      await ref.set({
+        "email": _newlogin,
+        "name": _newname,
+        "image": "",
+      });
+    }
+  }
+
   isLoggedin(a) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user != null) {
@@ -73,6 +88,7 @@ class UserController {
           password: _newpass!,
         );
         updatename();
+        setInDb();
         isLoggedin(a);
         return "registered with success, welcome";
       } on FirebaseAuthException catch (e) {

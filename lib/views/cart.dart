@@ -61,16 +61,22 @@ class _CartState extends State<Cart> {
                                     color: Colors.white,
                                     height: 100,
                                     width: 93,
-                                    child: Image.asset(
+                                    child: Image.network(
                                       CartController.cartConsult(
                                           index, "image"),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    CartController.cartConsult(index, "title"),
+                                  padding: const EdgeInsets.all(2),
+                                  child: Container(
+                                    width: 40,
+                                    child: Text(
+                                      CartController.cartConsult(
+                                          index, "title"),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
                                   ),
                                 ),
                                 Row(

@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:shopz_app/controllers/navigation_controller.dart';
 import 'package:shopz_app/views/cart.dart';
@@ -39,6 +41,17 @@ class CartController {
     } else {
       a.quantity++;
       CartModel.cartproducts.add(a);
+    }
+  }
+
+  static setInDB(id) async {
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DatabaseReference ref =
+          FirebaseDatabase.instance.ref("carts/${user.uid}");
+      await ref.set({
+        "productId": id,
+      });
     }
   }
 

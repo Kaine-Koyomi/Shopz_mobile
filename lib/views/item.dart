@@ -9,25 +9,30 @@ class Item extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            width: 129,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: DecorationImage(
-                  image: AssetImage(product.image),
-                  fit: BoxFit.fill,
-                )),
+    return Container(
+      padding: EdgeInsets.only(left: 10, right: 10),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              width: 129,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(
+                    image: NetworkImage(product.image),
+                    fit: BoxFit.fill,
+                  )),
+            ),
           ),
-        ),
-        Text(
-          product.title,
-          style: const TextStyle(fontSize: 17),
-        ),
-        Text("\$${Stylization.oCcy.format(product.price)}")
-      ],
+          Text(
+            product.title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: const TextStyle(fontSize: 17),
+          ),
+          Text("\$${Stylization.oCcy.format(product.price)}")
+        ],
+      ),
     );
   }
 }

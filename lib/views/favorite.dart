@@ -42,7 +42,7 @@ class _FavoriteState extends State<Favorite> {
                             color: Colors.white,
                             height: 100,
                             width: 93,
-                            child: Image.asset(
+                            child: Image.network(
                                 FavoriteController.favConsult(index, "image")),
                           ),
                         ),

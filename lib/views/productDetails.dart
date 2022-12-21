@@ -40,7 +40,8 @@ class _ProductdetailsState extends State<Productdetails> {
                     textAlign: TextAlign.start,
                     widget.product.title,
                     style: const TextStyle(
-                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
                       color: Colors.white,
                     ),
                   ),
@@ -51,7 +52,7 @@ class _ProductdetailsState extends State<Productdetails> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                      image: AssetImage(widget.product.image),
+                      image: NetworkImage(widget.product.image),
                     ),
                   ),
                   alignment: Alignment.bottomRight,
@@ -83,7 +84,8 @@ class _ProductdetailsState extends State<Productdetails> {
                   Text(
                     "\$${Stylization.oCcy.format(widget.product.price)}",
                     style: const TextStyle(
-                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
                       color: Colors.white,
                     ),
                   ),
