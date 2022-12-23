@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
 import 'package:shopz_app/controllers/navigation_controller.dart';
@@ -20,6 +21,9 @@ class _ProfileState extends State<Profile> {
   final UserController _controller = UserController();
   @override
   Widget build(BuildContext context) {
+    var user = FirebaseAuth.instance.currentUser;
+    var ref = _controller.fb.ref().child("users/${user!.uid}/image");
+
     return Container(
       color: Stylization.bodyColor,
       child: Column(
@@ -37,18 +41,22 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      image: const DecorationImage(
-                        image: AssetImage(
-                            "assets/images/default-profile-photo.jpg"),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    height: 100,
-                    width: 100,
-                  ),
+                  (imageurl.isEmpty)
+                      ? Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/images/default-profile-photo.jpg"),
+                              )))
+                      : Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Image.network(imageurl.last)),
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
@@ -79,6 +87,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         Icon(
@@ -149,12 +158,14 @@ class _ProfileState extends State<Profile> {
                     itemCount: 1,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                Productdetails(product: products[index]),
-                          ),
-                        ),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  Productdetails(product: products[index]),
+                            ),
+                          );
+                        },
                         child: Profile.lastseen.isEmpty
                             ? Container(
                                 color: Colors.white,

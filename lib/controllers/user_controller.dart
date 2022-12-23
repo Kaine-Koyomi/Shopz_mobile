@@ -1,9 +1,19 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:shopz_app/views/home.dart';
 
 class UserController {
+  final fb = FirebaseDatabase.instance;
+  final storageRef = FirebaseStorage.instance.ref();
+
+  FilePickerResult? result;
+  PlatformFile? pickedphoto;
+
   String? _login;
   setLogin(String value) => _login = value;
 
@@ -74,8 +84,18 @@ class UserController {
 
   updatename() async {
     var user = FirebaseAuth.instance.currentUser;
+    var ref = fb.ref().child("users/${user!.uid}");
     if (user != null) {
       await user.updateDisplayName(_newname);
+      await ref.update({"name": _newname});
+    }
+  }
+
+  updatephoto() async {
+    var user = FirebaseAuth.instance.currentUser;
+    var ref = fb.ref().child("users/${user!.uid}");
+    if (user != null) {
+      await ref.update({"image": pickedphoto!.name});
     }
   }
 
@@ -117,4 +137,41 @@ class UserController {
       }
     }
   }
+
+  Future uploadFile() async {
+    final user = FirebaseAuth.instance.currentUser;
+    final path = "profilepic/${user!.uid}/profilephoto";
+    final file = File(pickedphoto!.path!);
+
+    final ref = FirebaseStorage.instance.ref().child(path);
+    ref.putFile(file).whenComplete(() {
+      getFile();
+    });
+  }
+
+  Future<bool> pickfile() async {
+    result = await FilePicker.platform.pickFiles();
+    if (result == null) {
+      return false;
+    }
+
+    pickedphoto = result!.files.first;
+    return true;
+  }
+
+  static Future getFile() async {
+    final user = FirebaseAuth.instance.currentUser;
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("profilepic/${user!.uid}/profilephoto");
+
+    imageurl.add(await ref.getDownloadURL());
+    if (imageurl.length > 1) {
+      imageurl.removeAt(0);
+    } else {
+      return;
+    }
+  }
 }
+
+List<String> imageurl = [];

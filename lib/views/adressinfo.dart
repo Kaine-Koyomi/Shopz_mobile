@@ -53,40 +53,40 @@ class _AdressinfoState extends State<Adressinfo> {
                       TextField(
                         decoration: InputDecoration(label: Text("Street")),
                         controller: _controller.getcontroller("street"),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setStreet(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("Number")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setNumber(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("District")),
                         controller: _controller.getcontroller("bairro"),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setDistrict(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("Complement")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setComplement(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("City")),
                         controller: _controller.getcontroller("city"),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setCity(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("UF")),
                         controller: _controller.getcontroller("uf"),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setUf(value);
                         },
                       ),
@@ -96,37 +96,37 @@ class _AdressinfoState extends State<Adressinfo> {
                     children: [
                       TextField(
                         decoration: InputDecoration(label: Text("Street")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setStreet(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("Number")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setNumber(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("District")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setDistrict(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("Complement")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setComplement(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("City")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setCity(value);
                         },
                       ),
                       TextField(
                         decoration: InputDecoration(label: Text("UF")),
-                        onSubmitted: (value) {
+                        onChanged: (value) {
                           _controller.setUf(value);
                         },
                       ),
@@ -134,6 +134,7 @@ class _AdressinfoState extends State<Adressinfo> {
                   ),
             ElevatedButton(
                 onPressed: () {
+                  _controller.hasAdress();
                   _controller.setAdress();
                 },
                 child: Text("Save Adress"))
