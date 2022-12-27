@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shopz_app/controllers/user_controller.dart';
 import 'package:shopz_app/views/login.dart';
 
 void main() async {

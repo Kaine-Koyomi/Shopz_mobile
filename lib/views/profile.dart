@@ -20,6 +20,16 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final UserController _controller = UserController();
   @override
+  void initState() {
+    setState(() {
+      UserController.getFile();
+    });
+    print("Build Completed");
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var user = FirebaseAuth.instance.currentUser;
     var ref = _controller.fb.ref().child("users/${user!.uid}/image");
@@ -42,21 +52,32 @@ class _ProfileState extends State<Profile> {
               child: Row(
                 children: [
                   (imageurl.isEmpty)
-                      ? Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/images/default-profile-photo.jpg"),
-                              )))
-                      : Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Image.network(imageurl.last)),
+                      ? GestureDetector(
+                          onTap: () {
+                            print("ta usando o asset");
+                          },
+                          child: Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/default-profile-photo.jpg"),
+                                  ))),
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            print("ta usando o link");
+                            print(imageurl);
+                          },
+                          child: Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50)),
+                              child: Image.network(imageurl.last)),
+                        ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
@@ -105,7 +126,7 @@ class _ProfileState extends State<Profile> {
               ),
               GestureDetector(
                 onTap: () {
-                  NavigatorController.goToPage(EditProfile(), context);
+                  NavigatorController.goToPageAndNotRet(EditProfile(), context);
                 },
                 child: Container(
                   height: 50,

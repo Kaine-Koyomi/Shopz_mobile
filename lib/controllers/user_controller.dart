@@ -144,9 +144,7 @@ class UserController {
     final file = File(pickedphoto!.path!);
 
     final ref = FirebaseStorage.instance.ref().child(path);
-    ref.putFile(file).whenComplete(() {
-      getFile();
-    });
+    ref.putFile(file);
   }
 
   Future<bool> pickfile() async {
@@ -164,13 +162,23 @@ class UserController {
     final ref = FirebaseStorage.instance
         .ref()
         .child("profilepic/${user!.uid}/profilephoto");
+    try {
+      imageurl.add(await ref.getDownloadURL());
+    } catch (e) {
+      var defaultref = FirebaseStorage.instance
+          .ref()
+          .child("profilepic/default-profile-photo.jpg");
+      print(e);
+      imageurl.add(await defaultref.getDownloadURL());
+    }
 
-    imageurl.add(await ref.getDownloadURL());
     if (imageurl.length > 1) {
       imageurl.removeAt(0);
     } else {
       return;
     }
+
+    return imageurl.first;
   }
 }
 

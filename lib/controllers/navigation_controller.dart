@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shopz_app/views/body.dart';
 import 'package:shopz_app/views/cart.dart';
@@ -48,6 +50,14 @@ class NavigatorController {
 
   static goToPage(page, a) {
     Navigator.of(a).push(
+      MaterialPageRoute(
+        builder: (context) => page,
+      ),
+    );
+  }
+
+  static goToPageAndNotRet(page, a) {
+    Navigator.of(a).pushReplacement(
       MaterialPageRoute(
         builder: (context) => page,
       ),

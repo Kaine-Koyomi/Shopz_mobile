@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
 import 'package:shopz_app/controllers/mysearchdelegate.dart';
 import 'package:shopz_app/controllers/navigation_controller.dart';
+import 'package:shopz_app/controllers/user_controller.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,6 +16,16 @@ class Home extends StatefulWidget {
 }
 
 class Homestate extends State {
+  @override
+  void initState() {
+    setState(() {
+      UserController.getFile();
+    });
+    print("Build Completed");
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

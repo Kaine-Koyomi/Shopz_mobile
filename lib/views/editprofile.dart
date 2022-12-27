@@ -1,8 +1,4 @@
-import 'dart:ffi';
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:shopz_app/commons/styles.dart';
 import 'package:shopz_app/controllers/adress_controller.dart';
@@ -10,6 +6,8 @@ import 'package:shopz_app/controllers/navigation_controller.dart';
 import 'package:shopz_app/controllers/user_controller.dart';
 import 'package:shopz_app/repositories/adress_repository_imp.dart';
 import 'package:shopz_app/views/adressinfo.dart';
+import 'package:shopz_app/views/home.dart';
+import 'package:shopz_app/views/profile.dart';
 
 class EditProfile extends StatefulWidget {
   EditProfile({super.key});
@@ -22,6 +20,14 @@ class _EditProfileState extends State<EditProfile> {
   final AdressController _controller = AdressController(AdressRepositoryImp());
 
   final UserController _userController = UserController();
+  @override
+  void initState() {
+    UserController.getFile();
+    setState(() {});
+    print("Build Completed");
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +69,7 @@ class _EditProfileState extends State<EditProfile> {
                                 width: 100,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50)),
-                                child: Image.network(imageurl.last)),
+                                child: Image.network(imageurl.first)),
                         SizedBox(
                           width: 20,
                         ),
@@ -72,6 +78,7 @@ class _EditProfileState extends State<EditProfile> {
                               if (await _userController.pickfile()) {
                                 setState(() {
                                   _userController.uploadFile();
+                                  UserController.getFile();
                                 });
                               }
                             },
@@ -159,6 +166,20 @@ class _EditProfileState extends State<EditProfile> {
                         )
                       ]),
                     ),
+                    ElevatedButton(
+                        onPressed: () {
+                          NavigatorController.actualPage = Profile();
+
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: ((context) => Home())))
+                              .then((_) {
+                            if (mounted) {
+                              setState(() {});
+                            }
+                          });
+                        },
+                        child: Text("save"))
                   ]),
                 ),
               ),
